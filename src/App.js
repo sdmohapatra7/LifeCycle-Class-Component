@@ -1,9 +1,10 @@
-import ComponentA from "./componentA";
+
+import TimerOne from './components/timer/TimerOne';
 
 function App() {
   return (
     <>
-    <ComponentA />
+    <TimerOne />
     </>
   );
 }

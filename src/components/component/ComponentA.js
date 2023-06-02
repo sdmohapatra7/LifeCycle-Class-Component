@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ComponentD from './ComponentD';
 
 class ComponentA extends Component {
     constructor(){
@@ -7,20 +8,32 @@ class ComponentA extends Component {
             name:'ComponentA'
         }
         console.log('componentA constructor');
+        //setstate give the side-effect. so we can't update the state here
+        // this.setState({
+        //     name:'Shakti'
+        // })
     }
 
     static getDerivedStateFromProps(){
         console.log('componentA getderivedfromprops');
         return null;
     }
-
+    
+    //we can handle all the sede-effect in componentDidMount method
     componentDidMount(){
         console.log('componemtA componentDidMount');
+        // this.setState({
+        //     name:' Component Shakti'
+        // })
     }
     render() {
         console.log('componentA render');
-        return (
-            <h1>{this.state.name}</h1>
+        // this.setState({
+        //     name:'Shakti'
+        // })
+        return (<>
+t            <ComponentD />
+            </>
         )
     }
 }
