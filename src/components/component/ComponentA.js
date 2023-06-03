@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ComponentD from './ComponentD';
+import ErrorBoundary from '../../ErrorBoundary';
 
 class ComponentA extends Component {
     constructor(){
@@ -32,7 +33,10 @@ class ComponentA extends Component {
         //     name:'Shakti'
         // })
         return (<>
-t            <ComponentD />
+        <ErrorBoundary>
+        <ComponentD />
+        </ErrorBoundary>
+t            
             </>
         )
     }
