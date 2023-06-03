@@ -14,7 +14,10 @@ export default class TimerOne extends Component {
         return null;
     }
     shouldComponentUpdate(nextProps,nextState){
-        return true;
+        console.log(this.state.time);
+        console.log('nextProps',nextProps);
+        console.log('nextState',nextState);
+        return nextProps.timerOn !== this.props.timerOn || nextState.time % 5 === 0 ;
     }
     // handleIncrease=()=>{
     //     this.setState((prevState)=>{
@@ -38,23 +41,37 @@ export default class TimerOne extends Component {
     componentDidMount(){
         console.log('ComponentDidMount');
         console.log('__________________________________');
-        this.timer = setInterval(()=>{
-            this.setState((prevState)=>({time:prevState.time+1}))
-        },1000)
+        // this.timer = setInterval(()=>{
+        //     this.setState((prevState)=>({time:prevState.time+1}))
+        // },1000)
     }
     getSnapshotBeforeUpdate(pervProps,prevState){
         console.log('getSnapSortBeforeUpdate');
         return null;
     }
-    componentDidUpdate(){
+    componentDidUpdate(pervProps,prevState,snapShot){
         console.log('TimerOne ComponentDidUpdate');
         console.log('__________________________________');
-        if(this.state.time===30){
-            clearInterval(this.timer);
+        // if(this.state.time===30){
+        //     clearInterval(this.timer);
+        // }
+        // console.log('prevProps',pervProps);
+        // console.log('prevState',prevState);
+        // console.log('getSnapShotBeforeUpdate',snapShot);
+        if(pervProps.timerOn !== this.props.timerOn){
+            if(this.props.timerOn){
+                this.timer = setInterval(()=>{
+                    this.setState((prevState)=>({time:prevState.time+1}))
+                },1000)
+            }else{
+                clearInterval(this.timer);
+            }
         }
+        
     }
     componentWillUnmount(){
         console.log('TimerOne ComponentWillUnmount');
+        clearInterval(this.timer);
     }
     
 }
